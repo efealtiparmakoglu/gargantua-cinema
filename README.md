@@ -1,5 +1,7 @@
 # 🕳️ gargantua-cinema — Blender
 
+[![CI](https://github.com/efealtiparmakoglu/gargantua-cinema/actions/workflows/ci.yml/badge.svg)](https://github.com/efealtiparmakoglu/gargantua-cinema/actions/workflows/ci.yml)
+
 **EN:** A black hole rendered from **actual Schwarzschild geodesics**. Every pixel of the sky is a null geodesic integrated backwards through curved spacetime (RK4 on `u'' = −u + 1.5u²`): escaping rays sample the star field at their bent direction, captured rays stay black — the shadow and its lensing emerge from the math, not from a texture. The accretion disk carries **real relativistic doppler beaming**: `δ³ = (1/(γ(1−βμ)))³` brightens the approaching side and `g = √(1−1/r)` redshifts the inner edge, both computed in numpy and baked per-texel.
 
 **TR:** **Gerçek Schwarzschild geodezikleriyle** render edilmiş kara delik. Gökyüzünün her pikseli kavisli uzay-zamanda geriye integre edilen bir null geodezik (`u'' = −u + 1.5u²`, RK4): kaçan ışın bükülmüş yönünde yıldız alanını örnekler, düşen karanlıkta kalır — gölge ve merceklenme dokudan değil matematikten çıkar. Akresyon diski **gerçek rölativistik doppler beaming** taşır: `δ³ = (1/(γ(1−βμ)))³` yaklaşan tarafı parlatır, `g = √(1−1/r)` iç kenarı kızıla kaydırır; ikisi de numpy'da hesaplanıp tek tek doku hücresine pişirilir.
@@ -7,6 +9,23 @@
 ![Gargantua](renders/gargantua.gif)
 
 *Camera descends from a wide view into the disk plane, azimuth sweeping 32°. — Kamera geniş açıdan diskin düzlemine iner, azimut 32° süpürür.*
+
+## Quick start / Hızlı başlangıç
+
+From the repository root:
+
+```bash
+python3 -m venv .venv
+# macOS / Linux
+source .venv/bin/activate
+# Windows PowerShell: .venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+python tests/verify.py
+```
+
+The mathematical checks require NumPy, **not Blender**. Rendering requires Blender separately. CI runs the six existing numerical gates on Python 3.11 and 3.12; it does not run Cycles or certify the visual approximations described below.
+
+**TR:** Matematik testleri NumPy ile Blender olmadan çalışır. Render için ayrıca Blender gerekir. CI altı sayısal kapıyı çalıştırır; aşağıdaki görsel yaklaşım sınırlarını ortadan kaldırmaz.
 
 ## 🧪 The gates / Kapılar
 
